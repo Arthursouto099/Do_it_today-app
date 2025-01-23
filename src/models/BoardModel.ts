@@ -57,10 +57,13 @@ export class BoardModel {
         try {
             const board = await prisma.board.findFirst({where: {id: id}})
             const tasksByBord = await prisma.task.findMany({where: {boardId: id}})
+            const taskDeletedByBoard = await prisma.taskDeleted.findMany({where: {boardId: id}}) 
+
             if(board!== undefined || board!== null) {
                 return {
                     board,
-                    tasksByBord
+                    tasksByBord,
+                    taskDeletedByBoard
                 }
             }
         }
@@ -116,4 +119,33 @@ export class BoardModel {
             }
         }
     }
+
+    async deleteBoard(id: number) {
+        try {
+            const deletdTaskByIDboard = await prisma.task.deleteMany({
+                where: {boardId: id}
+            })
+
+            const deleteTaskDeletedByIdBoard = await prisma.taskDeleted.deleteMany({
+                where: {boardId: id}
+            })
+
+            const deletedBoard = await prisma.board.delete({
+                where: {id: id}
+            })
+
+          
+
+            return {
+                ok: true
+            }
+        }
+
+        catch(err: any) {
+            return {
+                ok: false
+            }
+        }
+        
+    } 
 }

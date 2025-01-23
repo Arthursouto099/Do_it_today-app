@@ -17,6 +17,7 @@ model User {
   email     String
   boards    Board[]
   tasks     Task[]
+  taskDeleted TaskDeleted[]
 
   @@map("Users")
 }
@@ -34,6 +35,7 @@ model Board {
   taskCount Int @default(0)
   taskCompleted Int @default(0)
   amountOfTasks Int @default(0)
+  taskDeleted TaskDeleted[]
 }
 
 model Task {
@@ -50,6 +52,23 @@ model Task {
   board       Board      @relation(fields: [boardId], references: [id])
   adm         User       @relation(fields: [userId], references: [id])
 }
+
+model TaskDeleted {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  finalDate   String
+  priority    Priority
+  status TaskStatus @default(CONCLUIDA)
+  boardId     Int
+  userId      Int
+  deletedAt   DateTime   @default(now())  // Data da exclusão
+  board       Board      @relation(fields: [boardId], references: [id])
+  user        User       @relation(fields: [userId], references: [id])
+}
+
+
+
 
 enum Status {
   DESATIVADO

@@ -118,10 +118,16 @@ body {
 
 }
 
+.projects h1 {
+    text-transform: uppercase;
+}
+
 
 
 .board h1 {
     word-wrap: break-word;
+    font-weight: bold;
+    text-transform: uppercase;
     /* Faz o texto quebrar a linha quando atingir o limite da largura */
     overflow-wrap: break-word;
     /* Suporte adicional para quebrar palavras longas */
@@ -419,6 +425,12 @@ form a:hover {
   width: 0%;
 }
 
+.delete-button {
+    display: flex;
+    justify-content: center;
+
+}
+
 @media (max-width: 768px) {
     /* Navbar responsiva */
     .navbar {
@@ -495,7 +507,7 @@ form a:hover {
     
 
     .board {
-        height: 430px;
+        height: 490px;
     }
 
     .button_area {

@@ -48,6 +48,35 @@
 
         <!-- Conteúdo principal (Cards) -->
         <div class="conteudo-principal">
+            <% if(taskDeleted.length > 0) { %>
+                <%taskDeleted.forEach(task => { %>
+                    <div class="card" style="opacity: 0.6;">
+                        <h1>
+                            <%= task.name %>
+                        </h1>
+                        <p>
+                            <%= task.description %>
+                        </p>
+                        <h2 class="status-code">Status: <%= task.status %>
+                        </h2>
+                        <h3 class="priority-code">Prioridade: <%= task.priority%>
+                        </h3>
+
+
+                        <p style="margin-top: 10px;">
+                            <%= task.finalDate %>
+                        </p>
+
+                        <div class="button_area">
+                            <button class="btn" style="cursor: default;" >concluir</button>
+                            <button class="btn" style="cursor: default;" >editar</button>
+                        </div>
+
+                    </div>
+               <% }) %>
+
+            <%  }%>
+
             <% if(task) %>
                 <%task.forEach(i=> { %>
                     <div class="card">
@@ -111,7 +140,7 @@
             <input type="text" id="priorityEdited" name="priority" placeholder="BAIXA, MEDIA, ALTA">
 
 
-            <button type="submit">Cadastrar</button>
+            <button type="submit">Editar</button>
         </form>
 
     </div>
@@ -258,6 +287,8 @@
             window.location.reload()
 
         }
+
+        
 
 
 

@@ -16,6 +16,10 @@ export class TaskModel {
         })
     }
 
+    private async addTaskInTaskDeleteList(data: Prisma.TaskDeletedCreateInput) {
+        await prisma.taskDeleted.create({data})
+    }
+
     // private async updateCountInBoard(id: number) {
     //     await prisma.board.update({
     //     where: {id: id},
@@ -95,6 +99,20 @@ export class TaskModel {
     async completeTask(id: number) {
         try {
             const completeTask = await prisma.task.delete({where: {id: id}})
+            
+            await this.addTaskInTaskDeleteList({
+                board: {
+                    connect: {id: completeTask.boardId}
+                },
+                user: {
+                    connect: {id: completeTask.userId}
+                },
+                name: completeTask.name,
+                description: completeTask.description,
+                finalDate: completeTask.finalDate,
+                priority: completeTask.priority,
+                
+            })
             await this.completedTask(completeTask.boardId)
             
             return {

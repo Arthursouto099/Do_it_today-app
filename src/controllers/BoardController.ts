@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { BoardModel } from "../models/BoardModel";
+import { prisma } from "../libs/db";
 
 
 
@@ -109,7 +110,8 @@ export class BoardController {
             if(board?.board!== null && board?.board!== undefined && board.tasksByBord !== undefined && board.tasksByBord !== null ) {
                 res.status(200).render('pages/boardPage', {
                     data: board.board,
-                    task: board.tasksByBord
+                    task: board.tasksByBord,
+                    taskDeleted: board.taskDeletedByBoard
                 })
             }
         }
@@ -119,6 +121,23 @@ export class BoardController {
         }
     }
 
+     
+   
+    async deleteBoardById(req: Request, res: Response) {
+        const isBoardDeleted = await model.deleteBoard(Number(req.params.id))
+
+        try {
+            if(isBoardDeleted.ok) {
+                res.status(200).send()
+            }
+        }
+
+        catch(err: any) {
+            {
+                res.status(500).send()
+            }
+        }
+    }
     
 
    
