@@ -1,0 +1,34 @@
+<%- include('../partials/registerHeader.ejs') %>
+
+
+
+<body>
+
+    
+    <div class="slogan"><h1> você tomou o <span style="color: aqua;">primeiro passo</span>, afim de se desenvolver. <br>
+    Nós iremos te ajudar e acompanhar durante essa <span style="color: aqua;">jornada!</span>
+    </h1>
+        <p>Ninguem vai te salvar, <span style="color: aqua;">mude você mesmo</span>. 
+        </p>
+        </div>
+
+    <div class="formArea">
+        <form method="post" action="/users/register">
+            <input type="text" name="name" placeholder="Nome" required />
+            <input type="number" name="age" placeholder="Idade" required />
+            <input type="email" name="email" placeholder="E-mail" required />
+            <input type="password" name="password" placeholder="Senha" required />
+
+            <a href="/login">Fazer login</a>
+            <button type="submit">Cadastrar</button>
+          </form>
+
+    </div>
+
+    
+    
+</body>
+
+
+
+</html>

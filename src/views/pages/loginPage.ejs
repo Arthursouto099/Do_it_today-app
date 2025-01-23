@@ -1,0 +1,31 @@
+<%- include('../partials/registerHeader.ejs') %>
+
+
+<body>
+
+    <div class="slogan"><h1>é uma <span style="color: aqua;">honra</span> ter você de volta</h1>
+    <p>Ninguem vai te salvar, <span style="color: aqua;">mude você mesmo</span>. 
+    </p>
+    </div>
+
+    <div class="formArea">
+       
+
+        <form method="post" action="/users/login">
+            <input type="email" name="email" placeholder="E-mail" required />
+            <input type="password" name="password" placeholder="Senha" required />
+            <%if(errorMessage ) { %>
+             <p class="errorMessage"><%= errorMessage %></p>
+            <% } %>
+           
+            
+            <a href="/register">cadastro</a>
+            <button type="submit">Cadastrar</button>
+          </form>
+          
+
+    </div>
+    
+</body>
+
+</html>

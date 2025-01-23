@@ -1,0 +1,511 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(36, 36, 36);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Estilos do menu */
+.navbar {
+    background-color: rgba(53, 53, 53, 0.479);
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu {
+    list-style: none;
+    text-align: center;
+}
+
+.menu li {
+    display: inline-block;
+
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 8px 16px;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+}
+
+.menu a:hover {
+    background-color: #575757;
+}
+
+.title-nav h1 {
+    display: flex;
+    padding-top: 10px;
+
+}
+
+
+
+.area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.projects {
+    margin: auto;
+}
+
+.projects h1 {
+    text-align: center;
+    margin-top: 40px;
+
+}
+
+.area-boards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Espaço entre as colunas */
+    margin: 30px;
+    justify-content: center;
+}
+
+.board {
+    width: 300px;
+    box-sizing: border-box;
+    background-color: rgba(51, 51, 51, 0.438);
+    /* Para visualização */
+    padding: 20px;
+    border-radius: 20px;
+    height: 500px;
+
+
+}
+
+/* Container que irá centralizar o botão */
+.container {
+    display: flex;
+    /* Torna o container um flexbox */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    margin-top: 60px;
+    align-items: center;
+    /* Centraliza verticalmente */
+    /* Faz com que o container ocupe 100% da altura da tela */
+}
+
+/* Estilos para o botão */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    margin: 10px;
+
+
+
+}
+
+
+
+.board h1 {
+    word-wrap: break-word;
+    /* Faz o texto quebrar a linha quando atingir o limite da largura */
+    overflow-wrap: break-word;
+    /* Suporte adicional para quebrar palavras longas */
+}
+
+.board p {
+    margin-top: 7px;
+    word-wrap: break-word;
+    /* Faz o texto quebrar a linha quando atingir o limite da largura */
+    overflow-wrap: break-word;
+    /* Suporte adicional para quebrar palavras longas */
+    margin-bottom: 40px;
+
+}
+
+.formArea {
+    position: absolute;
+    /* Definido como absolute */
+    top: 50%;
+    /* Coloca o topo no meio da tela */
+    left: 50%;
+    /* Coloca a esquerda no meio da tela */
+    transform: translate(-50%, -50%);
+    /* Ajusta para garantir que o centro seja realmente centralizado */
+    background-color: #5a5a5a8f;
+    /* Cor de fundo do formulário */
+    padding: 20px;
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave ao redor do formulário */
+    width: 300px;
+    /* Largura fixa do formulário */
+    text-align: center;
+    /* Alinha o conteúdo ao centro */
+}
+
+/* Estilos para os campos do formulário */
+form input,
+textarea,
+form button {
+    width: 100%;
+    /* Ocupa 100% da largura da formArea */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para o link de login */
+form a {
+    display: block;
+    margin-top: 10px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
+
+
+.messages {
+    padding: 20px;
+}
+
+.success {
+    padding: 9px;
+    background-color: #61b864;
+    border-radius: 12px;
+}
+
+.board-active {
+    margin-bottom: -30px;
+    background-color: #61b864;
+    padding: 7px;
+    font-size: 14px;
+    width: 80px;
+    text-align: center;
+    border-radius: 15px;
+
+}
+
+.board-completed {
+    margin-bottom: -30px;
+    background-color: #d1b350;
+    padding: 7px;
+    font-size: 14px;
+    width: 90px;
+    text-align: center;
+    border-radius: 15px;
+
+}
+
+/* Definindo a div pai para cobrir toda a tela */
+.container2 {
+    display: flex;
+    height: 100vh;
+    /* Garantir que a div cubra toda a altura da tela */
+    justify-content: space-between;
+
+
+}
+
+/* Estilo para o menu lateral */
+.menu-lateral {
+    display: flex;
+    flex-direction: column;
+    background-color: #5c5c5c04;
+    flex-wrap: wrap;
+    height: 100vh;
+    padding: 100px;
+    align-items: center;
+    margin-bottom: 150px;
+
+
+
+}
+
+.menu-lateral-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    flex-wrap: wrap;
+    max-width: 390px;
+}
+
+.menu-lateral h2 {
+    margin-bottom: 50px
+}
+
+/* Estilo para os itens do menu lateral */
+.menu-lateral-left a {
+    display: flex;
+    padding: 10px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    margin: 10px;
+    background-color: rgba(75, 75, 75, 0.808);
+    border-radius: 20px;
+
+}
+
+.menu-lateral a:hover {
+    background-color: rgb(161, 161, 161);
+}
+
+/* Estilo para o conteúdo principal (cards) */
+.conteudo-principal {
+    display: flex;
+    flex-direction: row;
+    background-color: #5c5c5c04;
+    flex-wrap: wrap;
+    height: 100vh;
+    padding: 100px;
+    max-width: 1200px;
+    margin-right: 90px;
+}
+
+.card {
+    width: 300px;
+    box-sizing: border-box;
+    background-color: rgba(51, 51, 51, 0.438);
+    /* Para visualização */
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    height: 600px;
+}
+
+.card h1 {
+    margin-bottom: 10px;
+
+}
+
+.card p {
+    margin-bottom: 30px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+.button_area {
+    display: flex;
+    /* Torna o container um flexbox */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    /* Faz com que o container ocupe 100% da altura da tela */
+
+}
+
+
+.not-important {
+    text-align: center;
+    background-color: #45a049;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.important {
+    text-align: center;
+    background-color: #c75629;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+}
+.urgent {
+    text-align: center;
+    background-color: #af3535;
+    color: white;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+.empty-boards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    
+}
+
+.empty-boards span {
+    color: aqua;
+}
+
+.btn-starter {
+    margin-top: 40px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: #45a049;
+    color: white;
+    cursor: pointer;
+}
+
+.status-complete  {
+    width: 350px;
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.status-complete ul {
+    list-style: none;
+}
+
+.status-complete h1 {
+    font-size: 24px;
+}
+
+.status-complete ul li {
+    margin: 20px 0;
+}
+
+.status-complete .bar {
+    background-color: #f0f0f0;
+    display: block;
+    height: 20px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar > span {
+  height: 20px;
+  background-color: #45a049;
+  position: absolute;
+  width: 0%;
+}
+
+@media (max-width: 768px) {
+    /* Navbar responsiva */
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+
+ 
+
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu li {
+        
+        margin: 15px 0;
+    }
+
+    /* Cards ajustados para telas pequenas */
+    .card {
+        width: 100%;
+        height: auto;
+    }
+
+    .formArea {
+        width: 80%;
+        padding: 15px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .container2 {
+        flex-direction: column;
+        max-width: none;
+    }
+
+    .menu-lateral {
+        padding: 30px 15px;
+        flex-wrap: nowrap;
+        
+    }
+
+    .menu-lateral-left a {
+        width: 100%;
+    }
+
+    /* Cards no menu lateral ajustados */
+    .conteudo-principal {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding: 10px;
+        margin-right: 0;
+        max-width: 100%;
+    }
+
+    .card:first-child {
+        margin-top: -120px;
+    }
+
+    .card {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    
+
+    .board {
+        height: 430px;
+    }
+
+    .button_area {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .empty-boards h1 {
+        font-size: 18px;
+        text-align: center;
+        margin: 0px 10px;
+    }
+}

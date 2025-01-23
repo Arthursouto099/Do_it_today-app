@@ -1,0 +1,176 @@
+<%- include('../partials/homeHeader.ejs') %>
+
+
+<!-- 
+<% if(data) { %>
+<h1><%= data.name %></h1>
+<% } %>     -->
+
+<div class="container2">
+
+    <!-- Menu lateral -->
+    <div class="menu-lateral">
+    
+    <h1>MENU</h1>
+    
+    <div class="menu-lateral-left">
+        <a href="#" onclick="createTask()">Criar Task</a>
+        <a href="#">Item 2</a>
+        <a href="#">Item 3</a>
+        <a href="#">Item 4</a>
+    </div>
+
+    <div class="status-complete">
+
+        <h1 class="status-title"><%= data.status %></h1>
+
+        <ul>
+            <li> 
+                <span class="bar"><span class="status-progress"></span></span>
+            </li>
+        </ul>
+
+
+
+        <div class="qtd-tasks"><%= data.taskCompleted%> : <%= data.amountOfTasks %></div>
+    </div>
+
+    
+   
+
+
+     
+    </div>
+
+    <!-- Conteúdo principal (Cards) -->
+    <div class="conteudo-principal">
+        <% if(task) %>
+        <%task.forEach(i =>  { %>
+            <div class="card">
+                <h1><%= i.name %></h1>
+                <p> <%= i.description %></p>
+                <h2 class="status-code">Status: <%= i.status %></h2>
+                <h3 class="priority-code">Prioridade: <%= i.priority%></h3>
+        
+        
+                <p style="margin-top: 10px;"><%= i.finalDate %></p>
+        
+                <div class="button_area">
+                    <button class="btn" onclick="completeTask('<%= i.id %> ')">concluir</button>
+                    <button class="btn">editar</button>
+                </div>
+                
+              </div>
+       <% }) %>
+
+       <%  %>
+      
+
+      <!-- Adicione mais cards conforme necessário -->
+    </div>
+
+  </div>
+
+  <div class="formArea" id="formCreateTask" style="display: none;">
+    <form  id="formCreate" method="post" action="/task/createTask">
+        <input type="hidden" name="_method" value="PUT" />
+
+        <input type="text" name="title" id="titleCreate" placeholder="Title" required />
+        <textarea name="description" id="descriptionCreate" placeholder="description" rows="4" required></textarea>
+        <input type="date" id="createData" name="finalDate" placeholder="" required>
+        <input type="text" id="createPriority" name="priority" placeholder="BAIXA, MEDIA, ALTA">
+
+
+        <button type="submit">Cadastrar</button>
+      </form>
+
+</div>
+
+
+
+<script>
+
+
+const countTasks = document.querySelector('.qtd-tasks')
+const progressBar = document.querySelector('.status-progress')
+
+
+const values = countTasks.textContent.trim().split(':')
+
+
+async function getPercentage(currentValue, maxValue) {
+   const result = (currentValue / maxValue) * 100
+   progressBar.style.width = `${Math.min(result, 100)}%`
+   if(result === 100) {
+    document.querySelector('.status-title').textContent = 'COMPLETO'
+    
+    const request = await  fetch('/board/status', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            status: 'COMPLETO'
+        })
+        
+    })
+
+    console.log(request.json())
+    
+   }
+}
+
+getPercentage(values[0], values[1])
+
+    
+function createTask() {
+
+const area = document.getElementById('formCreateTask')
+
+if(area.style.display === 'none') {
+    area.style.display = 'flex'
+}
+
+}
+
+const myElemetPriority = document.querySelectorAll('.priority-code')
+
+
+for(let i = 0; i < myElemetPriority.length; i++) {
+    const myPriority = myElemetPriority[i].textContent.split(':')
+    
+
+    if(String(myPriority[1]).trim() === 'BAIXA') {
+        myElemetPriority[i].classList.add('not-important')
+    }
+
+    else if(String(myPriority[1]).trim() === 'MEDIA') {
+        myElemetPriority[i].classList.add('important')
+    }
+
+    else if(String(myPriority[1]).trim() === 'ALTA') {
+        myElemetPriority[i].classList.add('urgent')
+    }
+
+
+}
+
+async function completeTask(id) {
+    const request = await fetch('/task/delete/' + id, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': "application/json"
+        }
+    })
+
+    window.location.reload()
+
+}
+
+
+
+
+</script>
+</body> 
+  
+</html>

@@ -1,0 +1,174 @@
+<%- include('../partials/homeHeader.ejs') %>
+    
+    
+<div class="area">
+
+
+
+    <div class="boards">
+        <% if(data.length > 0) { %>
+            <div class="projects"><h1>My projects</h1></div>
+        <% } %>
+
+
+        <div class="messages" id="messages">
+
+        </div>
+
+        <% if(data.length < 1) { %>
+            <div class="empty-boards">
+                <h1>Você não possui nenhum <span>quadro</span> ainda!</h1>
+                 <button class="btn-starter" onclick="createBoard()">Criar um Board</button>
+            </div>
+
+       <% } %>
+    
+        <div class="area-boards">
+            <% data.forEach(i => { %>
+                <div class="board">
+                    <h1><%= i.name %></h1>
+                    <p><%= i.description %></p>
+                    <h2 class="active-not" style="margin-top: 12px;"><%= i.status %></h2>
+                    <div class="container">
+                        <button class="btn" onclick="getBoard('<%= i.id %>')">Open</button>
+                        <button class="btn" onclick="sendIdToForm('<%=i.id%>')" style="background-color: rgb(81, 115, 228);">Editar</button>
+                    </div>
+                </div>
+           <% }) %>
+        
+
+
+           <div class="formArea" id="formArea" style="display: none;">
+            <form  id="formUpdate" method="post">
+                <input type="hidden" name="_method" value="PUT" />
+
+                <input type="text" name="title" id="title" placeholder="Title" required />
+                <textarea name="description" id="description" placeholder="description" rows="4" required></textarea>
+                <button type="submit">Cadastrar</button>
+              </form>
+    
+        </div>
+
+        <div class="formArea" id="formCreate" style="display: none;">
+            <form  id="formCreate" method="post" action="board/createBoard">
+                <input type="hidden" name="_method" value="PUT" />
+
+                <input type="text" name="title" id="titleCreate" placeholder="Title" required />
+                <textarea name="description" id="descriptionCreate" placeholder="description" rows="4" required></textarea>
+                <button type="submit">Cadastrar</button>
+              </form>
+    
+        </div>
+            
+    </div>
+
+    <% if(data.length > 0)  { %>
+
+    <div class="empty-boards" style="margin-top: 60px; margin-bottom: 50px;">
+        <h1>Não limite seu <span>progesso</span>, expanda suas <span>metas</span> </h1>
+         <button class="btn-starter" onclick="createBoard()">Criar um novo Board</button>
+    </div>
+   
+    <% } %>
+    
+
+
+</div>
+ 
+
+    <script>
+
+
+
+        // if(document.getElementById(status).innerText === 'ATIVO') {
+        //     document.getElementById(status).className = 'board-active'
+        // }
+
+
+        const elements = document.querySelectorAll('.active-not')
+
+        elements.forEach((element) => {
+            if(String(element.innerText) === 'ATIVO') {
+                element.className = 'board-active'
+            }
+
+            else if(String(element.innerText) === 'COMPLETO') {
+                element.className = 'board-completed'
+            }
+        })
+
+       
+
+       function  sendIdToForm(id) {
+            const area = document.getElementById('formArea')
+            const form = document.getElementById('formUpdate')
+
+            if(area.style.display === 'none') {
+                area.style.display = 'flex'
+            }
+
+            form.addEventListener("submit", async(e) => {
+                e.preventDefault()
+
+                const action = `/board/update/${id}`
+                
+
+                const response = await fetch(action, {
+                    method: "PUT",
+                    headers: {"Content-type": "application/json"},
+                    body: JSON.stringify({
+                        title: document.getElementById('title').value,
+                        description: document.getElementById('description').value
+                    })
+                })
+
+                console.log(response)
+
+                if(response.ok) {
+                    area.style.display = 'none'
+                    const messages = document.getElementById('messages')
+                    const h1 = document.createElement('h1')
+                    h1.className = 'success'
+                    h1.innerText = 'Board editado com sucesso'
+                    messages.appendChild(h1)
+                    setTimeout(() => {
+                        h1.innerText = ''
+                        messages.style.display = 'none'
+                    }, 3000)
+                    
+                    window.location.reload()
+                    
+                }
+                
+            })
+
+
+
+            
+
+            
+
+        }
+
+
+        function createBoard() {
+
+            const area = document.getElementById('formCreate')
+
+            if(area.style.display === 'none') {
+                area.style.display = 'flex'
+            }
+        }
+
+        
+        function getBoard(id) {
+            window.location.href = `/board/getBoard/${id}`
+        }
+
+
+
+    </script>
+       
+   </body> 
+  
+</html>

@@ -1,0 +1,141 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(53, 53, 53, 0.479);
+}
+
+body {
+    background-color: rgb(36, 36, 36);
+}
+
+.menu h1 {
+    padding: 50px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.formArea {
+  margin-top: -70px;
+    display: flex;                 /* Flexbox para centralização */
+    justify-content: center;       /* Alinha o conteúdo horizontalmente no centro */
+    align-items: center;           /* Alinha o conteúdo verticalmente no centro */
+    height: 100vh;                 /* A altura da div vai ocupar 100% da altura da tela */
+  }
+  
+  form a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: aqua;
+    padding: 10px;
+    width: 80px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+  }
+  /* Estilizando o formulário */
+  form {
+    background-color: #3131313b;    /* Cor de fundo suave para o formulário */
+    padding: 20px;                 /* Espaçamento interno */
+    border-radius: 8px;            /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombras para dar profundidade */
+    width: 500px;                 /* Largura fixa do formulário */
+    display: flex;                 /* Flexbox para os campos */
+    flex-direction: column;        /* Os campos são dispostos em coluna */
+    gap: 50px;      
+    padding-left: 40px; 
+    padding-right: 40px;              /* Espaçamento entre os campos */
+  }
+  
+  /* Estilizando os campos do formulário */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  button {
+    padding: 10px;                 /* Espaçamento interno dos campos */
+    border-radius: 5px;            /* Bordas arredondadas */
+    border: 1px solid #ccc;       /* Borda cinza clara */
+    font-size: 16px;               /* Tamanho da fonte */
+  }
+  
+  /* Estilo para o botão de envio */
+  button {
+    background-color:aqua;     /* Cor de fundo azul */
+    color: white;                  /* Cor do texto branco */
+    border: none;                  /* Remover a borda */
+    cursor: pointer;               /* Cursor em forma de mão */
+    transition: background-color 0.3s;  /* Transição suave para a cor de fundo */
+  }
+  
+  /* Efeito de hover no botão */
+  button:hover {
+    background-color: #0056b3;    
+  }
+
+.errorMessage {
+  background-color: red;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  text-transform: uppercase;
+}
+
+
+
+.slogan {
+  text-align: center;
+  margin-top: 90px;
+  height: 20px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.slogan p {
+  margin-top: 10px;
+  text-transform: none;
+}
+
+@media (max-width: 768px) {
+  .formArea {
+    height: auto;
+    margin-top: 20px;
+    padding: 0 10px; /* Padding para dar espaçamento nas laterais */
+  }
+
+  form {
+    width: 100%;
+    padding: 20px 10px; /* Reduz o padding em dispositivos móveis */
+    gap: 20px; /* Menor espaço entre os campos */
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  button {
+    font-size: 14px; /* Ajuste no tamanho da fonte */
+    padding: 8px;    /* Menor espaçamento interno */
+  }
+
+  button {
+    width: 100%; /* O botão ocupa toda a largura disponível */
+  }
+
+  .slogan {
+    margin-top: 20px;
+    font-size: 14px;
+    margin-bottom: 100px;
+
+  }
+
+  .slogan h1 {
+    font-size: 15px;
+  }
+}

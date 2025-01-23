@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  age       Int
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  email     String
+  boards    Board[]
+  tasks     Task[]
+
+  @@map("Users")
+}
+
+model Board {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  userId      Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  status      Status   @default(ATIVO)
+  User        User     @relation(fields: [userId], references: [id])
+  tasks       Task[]
+  taskCount Int @default(0)
+  taskCompleted Int @default(0)
+  amountOfTasks Int @default(0)
+}
+
+model Task {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  status      TaskStatus @default(PROGRESSO)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now())
+  finalDate   String
+  priority    Priority
+  boardId     Int
+  userId      Int
+  board       Board      @relation(fields: [boardId], references: [id])
+  adm         User       @relation(fields: [userId], references: [id])
+}
+
+enum Status {
+  DESATIVADO
+  ATIVO
+  COMPLETO
+}
+
+enum TaskStatus {
+  PEDENTE
+  PROGRESSO
+  CONCLUIDA
+}
+
+enum Priority {
+  BAIXA
+  MEDIA
+  ALTA
+}
