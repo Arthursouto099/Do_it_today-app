@@ -54,6 +54,27 @@ export class TaskModel {
         })
     }
 
+    async updateTask(data: Prisma.TaskCreateInput, id: number) {
+        try {
+            const taskUpdated = await prisma.task.update({
+                where: {id: id}, 
+                data
+            })
+
+            return {
+                data: taskUpdated,
+                ok: true
+            }
+        }
+
+        catch(error: any) {
+            return {
+                error,
+                ok: false
+            }
+        }
+    }
+
 
 
     async createTask(data: Prisma.TaskCreateInput) {
