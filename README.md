@@ -2,6 +2,8 @@
 
 Este é um projeto backend desenvolvido com Node.js, Express, Prisma e TypeScript. Abaixo estão listadas as dependências e dev dependências que o projeto utiliza.
 
+> :construction: Projeto em construção :construction:
+
 ## Dependências
 
 As dependências principais do projeto são:
