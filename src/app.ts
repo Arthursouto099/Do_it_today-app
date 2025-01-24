@@ -56,7 +56,7 @@ app.use(router)
 app.use(helmet())
 
 
-const port = process.env.PORT 
+const port = process.env.PORT  || 10000
 
 
 app.listen(port, () => {
