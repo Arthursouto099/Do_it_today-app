@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { BoardModel } from "../models/BoardModel";
-import { resolve } from "path";
+import { prisma } from "../libs/db";
 
 
 
@@ -17,11 +17,16 @@ export class PageConrtoller {
 
     async renderHomePage(req: Request, res: Response) {
         const infoFromUserLogged = req.session.user?.id
+        const infoUserById = await prisma.user.findUnique({where: {id: infoFromUserLogged}})
+
         const data = await model.getAllBoardsFromUserId(Number(infoFromUserLogged))
+
         await new Promise(resolve => setTimeout(resolve, 2000))
-        if(data !== null) {
+        if(data !== null && infoUserById !== null) {
             res.render('pages/homePage', {
-                data: data.data
+                data: data.data,
+                score: infoUserById.score
+            
             })
         }
     }

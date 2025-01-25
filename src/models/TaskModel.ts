@@ -96,10 +96,22 @@ export class TaskModel {
         }
     }
 
+
+    async isCompleted(id: number) {
+        const updateScoreUser = await prisma.user.update({
+            where: {id: id},
+            data: {
+                score: {
+                    increment: 50
+                }
+            }
+        })
+    }
+
     async completeTask(id: number) {
         try {
             const completeTask = await prisma.task.delete({where: {id: id}})
-            
+            await this.isCompleted(completeTask.userId) 
             await this.addTaskInTaskDeleteList({
                 board: {
                     connect: {id: completeTask.boardId}

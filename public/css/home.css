@@ -425,6 +425,11 @@ form a:hover {
   width: 0%;
 }
 
+.projects p {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
 .delete-button {
     display: flex;
     justify-content: center;
