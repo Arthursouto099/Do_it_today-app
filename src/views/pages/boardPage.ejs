@@ -50,7 +50,7 @@
         <div class="conteudo-principal">
             <% if(taskDeleted.length > 0) { %>
                 <%taskDeleted.forEach(task => { %>
-                    <div class="card" style="opacity: 0.6;">
+                    <div class="card led-border--green" style="opacity: 0.6;">
                         <h1>
                             <%= task.name %>
                         </h1>
@@ -119,7 +119,13 @@
             <input type="text" name="title" id="titleCreate" placeholder="Title" required />
             <textarea name="description" id="descriptionCreate" placeholder="description" rows="4" required></textarea>
             <input type="date" id="createData" name="finalDate" placeholder="" required>
-            <input type="text" id="createPriority" name="priority" placeholder="BAIXA, MEDIA, ALTA">
+            <select id="createPriority" name="priority">
+                <option value="" disabled selected>Selecione a prioridade</option>
+                <option value="BAIXA">BAIXA</option>
+                <option value="MEDIA">MEDIA</option>
+                <option value="ALTA">ALTA</option>
+            </select>
+            
 
 
             <button type="submit">Cadastrar</button>
@@ -137,7 +143,12 @@
             <input type="text" name="title" id="titleEdited" placeholder="Title" required />
             <textarea name="description" id="descriptionEdited" placeholder="description" rows="4" required></textarea>
             <input type="date" id="dateEdited" name="finalDate" placeholder="" required>
-            <input type="text" id="priorityEdited" name="priority" placeholder="BAIXA, MEDIA, ALTA">
+            <select id="priorityEdited" name="priority">
+                <option value="" disabled selected>Selecione a prioridade</option>
+                <option value="BAIXA">BAIXA</option>
+                <option value="MEDIA">MEDIA</option>
+                <option value="ALTA">ALTA</option>
+            </select>
 
 
             <button type="submit">Editar</button>

@@ -1,16 +1,17 @@
 import { Router } from "express"
-import { PageConrtoller } from "../controllers/pageController"
+import { PageController } from "../controllers/pageController"
 import { isLogged } from "../middlewares/isLogged"
 import {notFound} from '../handlers/errorGlobalHandler'
 
 
 
 const pageRouter = Router()
-const conrtoller = new  PageConrtoller()
+const controller = new  PageController()
 
 pageRouter.get('/', notFound)
-pageRouter.get('/home', isLogged, conrtoller.renderHomePage)
-pageRouter.get('/register', conrtoller.renderRegisterPage)
-pageRouter.get('/login', conrtoller.renderLoginPage)
+pageRouter.get('/home', isLogged, controller.renderHomePage)
+pageRouter.get('/register', controller.renderRegisterPage)
+pageRouter.get('/login', controller.renderLoginPage)
+pageRouter.get('/profile', controller.renderProfilePage )
 
 export default pageRouter

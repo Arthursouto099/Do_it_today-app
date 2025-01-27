@@ -188,6 +188,17 @@
 
             }
 
+            const boards = document.querySelectorAll('.board')
+            
+            boards.forEach(e => {
+                if(e.querySelector('h2').textContent.trim() === 'COMPLETO') {
+                    e.classList.add('led-border--golden')
+                }
+                else if(e.querySelector('h2').textContent.trim() === 'ATIVO') {
+                    e.classList.add('led-border')
+                }
+            })
+
 
             function createBoard() {
 

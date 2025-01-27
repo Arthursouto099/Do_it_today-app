@@ -167,6 +167,7 @@ body {
 
 /* Estilos para os campos do formulário */
 form input,
+select,
 textarea,
 form button {
     width: 100%;
@@ -212,12 +213,13 @@ form a:hover {
 
 .board-active {
     margin-bottom: -30px;
-    background-color: #61b864;
+    background-color: rgb(64, 173, 173);
     padding: 7px;
     font-size: 14px;
     width: 80px;
     text-align: center;
     border-radius: 15px;
+    animation:  ledBorderEffect 2s infinite ;
 
 }
 
@@ -229,6 +231,7 @@ form a:hover {
     width: 90px;
     text-align: center;
     border-radius: 15px;
+    animation: ledBorderEffectGold 2s infinite;
 
 }
 
@@ -359,6 +362,7 @@ form a:hover {
     padding: 7px;
     border-radius: 10px;
 }
+
 .urgent {
     text-align: center;
     background-color: #af3535;
@@ -373,7 +377,7 @@ form a:hover {
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    
+
 }
 
 .empty-boards span {
@@ -391,7 +395,7 @@ form a:hover {
     cursor: pointer;
 }
 
-.status-complete  {
+.status-complete {
     width: 350px;
     padding: 40px;
     border-radius: 20px;
@@ -418,11 +422,11 @@ form a:hover {
     overflow: hidden;
 }
 
-.bar > span {
-  height: 20px;
-  background-color: #45a049;
-  position: absolute;
-  width: 0%;
+.bar>span {
+    height: 20px;
+    background-color: #45a049;
+    position: absolute;
+    width: 0%;
 }
 
 .projects p {
@@ -430,21 +434,131 @@ form a:hover {
     font-weight: bold;
     text-align: center;
 }
+
 .delete-button {
     display: flex;
     justify-content: center;
 
 }
 
+.profile--area {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.img img {
+    width: 300px;
+    border: 1px solid rgb(82, 138, 155);
+    border-radius: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+}
+
+.info {
+
+    border-radius: 24px;
+    text-align: center;
+}
+
+.info h1 {
+    font-size: 24px;
+    border: 1px solid rgb(82, 138, 155);
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 18px;
+}
+
+
+
+.score_user {
+    margin-top: 19px;
+    text-transform: uppercase;
+}
+
+
+
+.led-border--green {
+    animation: ledBorderEffectGreen 2s infinite;
+    
+}
+
+.led-border--golden {
+    animation: ledBorderEffectGold 2s infinite;
+}
+
+@keyframes ledBorderEffectGold {
+    0%, 100% {
+        box-shadow: 0 0 6px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 223, 77, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 4px rgba(255, 215, 0, 0.6), 0 0 8px rgba(255, 200, 50, 0.4);
+    }
+}
+
+@keyframes ledBorderEffectGreen {
+    0%, 100% {
+        box-shadow: 0 0 6px rgba(144, 238, 144, 0.8), 0 0 12px rgba(124, 210, 124, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 4px rgba(124, 210, 124, 0.6), 0 0 8px rgba(104, 180, 104, 0.4);
+    }
+}
+
+
+.led-border {
+    animation: ledBorderEffect 2s infinite;
+}
+
+@keyframes ledBorderEffect {
+
+    0%, 100% {
+        box-shadow: 0 0 6px aqua, 0 0 12px aqua;
+    }
+    50% {
+        box-shadow: 0 0 4px aqua, 0 0 8px aqua;
+    }
+}
+
+
+
 @media (max-width: 768px) {
     /* Navbar responsiva */
+
+    .img {
+        margin-bottom: 20px;
+    }
+
+    .info h1 {
+        font-size: 17px;
+        padding: 13px;
+        margin: 15px 15px;
+
+    }
+
+    .info h1:first-child {
+        margin-top: -30px;
+    }
+
+    .score_user {
+        text-align: center;
+        margin: 70px 10px;
+
+    }
+
     .navbar {
         flex-direction: column;
         padding: 10px;
     }
-    
 
- 
+
+
 
     .menu {
         flex-direction: column;
@@ -455,7 +569,7 @@ form a:hover {
     }
 
     .menu li {
-        
+
         margin: 15px 0;
     }
 
@@ -463,6 +577,7 @@ form a:hover {
     .card {
         width: 100%;
         height: auto;
+
     }
 
     .formArea {
@@ -482,7 +597,7 @@ form a:hover {
     .menu-lateral {
         padding: 30px 15px;
         flex-wrap: nowrap;
-        
+
     }
 
     .menu-lateral-left a {
@@ -508,11 +623,16 @@ form a:hover {
         margin: auto;
         margin-bottom: 20px;
     }
-
     
+    .projects h1 {
+        margin-left:  15px;
+        margin-right: 15px;
+    }
+
 
     .board {
         height: 490px;
+     
     }
 
     .button_area {

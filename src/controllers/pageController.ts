@@ -7,7 +7,7 @@ import { prisma } from "../libs/db";
 const model = new BoardModel()
 
 
-export class PageConrtoller {
+export class PageController {
 
     
 
@@ -37,9 +37,31 @@ export class PageConrtoller {
         })
     }
 
+    async renderProfilePage(req: Request, res: Response) {
+        
+
+        const id = req.session.user?.id
+
+        try {
+            const user = await prisma.user.findUnique({where: {id: id}})
+            console.log(user)
+            if(user !== null) {
+                res.render('pages/profile', {
+                    data: user
+                })
+            }
+
+            else {throw new Error('This user is null')}
+        }
+        
+
+        catch(error: unknown) {
+            console.log(error)
+            res.redirect('/home')
+        }
 
 
-
+     }
 
 }
 
