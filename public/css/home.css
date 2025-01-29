@@ -526,9 +526,30 @@ form a:hover {
     }
 }
 
+@media screen and (min-width: 629px) and (max-width: 1478px) {
+
+    .container2 {
+        flex-direction: column;
+    }
+
+    .conteudo-principal{
+    
+        margin: auto;
+        margin-top: -300px;
+    
+    }
+
+    .card {
+        height: 600px;
+        margin: auto;
+        margin-top: 50px;
+    }
+
+}
 
 
-@media (max-width: 768px) {
+
+@media (max-width: 628px) {
     /* Navbar responsiva */
 
     .img {
