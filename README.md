@@ -66,17 +66,3 @@ As dependências de desenvolvimento são bibliotecas e ferramentas necessárias 
 - **prisma**: Ferramenta para geração e migração de banco de dados com Prisma ORM.
   - Versão: `^6.2.1`
 
-
-## Como instalar 
-
-1.Clone este repositorio
-
-```bash 
-
-git clone <url-do-repositorio>
-
-cd <nome-do-diretorio>
-
-npm install
-
-npm run dev
